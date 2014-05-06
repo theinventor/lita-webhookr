@@ -30,6 +30,8 @@ end
 Just do a GET with the api_key param and a message param at: `http://address.of.lita/webhookr`
 ```
 curl -X GET "http://address.of.lita/webhookr?api_key=abc123&message=Hey"
+```
+
 
 ## License
 
