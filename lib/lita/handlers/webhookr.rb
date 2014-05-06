@@ -58,7 +58,7 @@ module Lita
       end
 
       def rooms_for_repo(repo)
-        rooms = Lita.config.handlers.github_commits.repos[repo]
+        api_key = Lita.config.handlers.webhookr.api_key
 
         if rooms
           Array(rooms)
