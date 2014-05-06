@@ -8,7 +8,7 @@ module Lita
         config.repos = {}
       end
 
-      http.post "/webhookr", :receive
+      http.get "/webhookr", :receive
 
       def receive(request, response)
         event_type = request.env['HTTP_X_GITHUB_EVENT'] || 'unknown'
@@ -19,6 +19,7 @@ module Lita
         elsif event_type == "ping"
           response.status = 200
           response.write "Working!"
+
         else
           response.status = 404
         end
