@@ -1,39 +1,35 @@
-# lita-github-commits
+# lita-webhookr
 
-[![Build Status](https://travis-ci.org/webdestroya/lita-github-commits.png)](https://travis-ci.org/webdestroya/lita-github-commits)
-[![Code Climate](https://codeclimate.com/github/webdestroya/lita-github-commits.png)](https://codeclimate.com/github/webdestroya/lita-github-commits)
-[![Coverage Status](https://coveralls.io/repos/webdestroya/lita-github-commits/badge.png)](https://coveralls.io/r/webdestroya/lita-github-commits)
 
-**lita-github-commits** is a handler for [Lita](https://github.com/jimmycuadra/lita) that listens for github commits and posts them in the channel.
+**lita-webhookr** is a handler for [Lita](https://github.com/jimmycuadra/lita) that listens for HTTP messages and posts them in the channel.
 
 ## Installation
 
-Add lita-github-commits to your Lita instance's Gemfile:
+Add lita-webhookr to your Lita instance's Gemfile:
 
 ``` ruby
-gem "lita-github-commits"
+gem "lita-webhookr"
 ```
 
 ## Configuration
 
 ### Required attributes
 
-* `repos` (Hash) - A map of repositories to allow notifications for and the chat rooms to post them in. The keys should be strings in the format "github_username/repository_name" and the values should be either a string room name or an array of string room names. Default: `{}`.
+* `api_key` (String) .
 
 ### Example
 
 ``` ruby
 Lita.configure do |config|
-  config.handlers.github_commits.repos = {
-    "username/repo1" => "#someroom",
-    "username/repo2" => ["#someroom", "#someotherroom"]
-  }
+  config.handlers.webhookr.api_key = ENV['webhookr_api_key']
 end
 ```
 
 ## Usage
 
-You will need to add a GitHub Webhook url that points to: `http://address.of.lita/github-commits`
+Just do a GET with the api_key param and a message param at: `http://address.of.lita/webhookr`
+```
+curl -X GET "http://address.of.lita/webhookr?api_key=abc123&message=Hey"
 
 ## License
 
