@@ -2,13 +2,13 @@ require "lita"
 
 module Lita
   module Handlers
-    class GithubCommits < Handler
+    class WebHookr < Handler
 
       def self.default_config(config)
         config.repos = {}
       end
 
-      http.post "/github-commits", :receive
+      http.post "/webhookr", :receive
 
       def receive(request, response)
         event_type = request.env['HTTP_X_GITHUB_EVENT'] || 'unknown'
@@ -74,6 +74,6 @@ module Lita
 
     end
 
-    Lita.register_handler(GithubCommits)
+    Lita.register_handler(WebHookr)
   end
 end
